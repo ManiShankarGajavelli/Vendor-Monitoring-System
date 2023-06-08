@@ -1,4 +1,4 @@
-package com.gvc.core.vendormonitoringframework;
+package com.gvc.core.vendormonitoringframework.entities;
 import javax.persistence.*;
 
 @Entity

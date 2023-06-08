@@ -1,7 +1,10 @@
-package com.gvc.core.vendormonitoringframework;
+package com.gvc.core.vendormonitoringframework.init;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import com.gvc.core.vendormonitoringframework.entities.Vendor;
+import com.gvc.core.vendormonitoringframework.repository.VendorRepository;
 
 @Component
 public class VendorDataInitializer implements CommandLineRunner {

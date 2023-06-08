@@ -1,4 +1,4 @@
-package com.gvc.core.vendormonitoringframework;
+package com.gvc.core.vendormonitoringframework.init;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.gvc.core.vendormonitoringframework;
+package com.gvc.core.vendormonitoringframework.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.HealthEndpoint;
@@ -7,6 +7,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
+import com.gvc.core.vendormonitoringframework.init.UrlChecker;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -23,7 +25,7 @@ public class MonitorService {
     @Scheduled(fixedRateString = "${monitoring.interval}")
     public void checkEndpointStatus() {
         if (!UrlChecker.isUrlUp("")) {
-            sendAlertEmail("Down");
+//            sendAlertEmail("Down");
         }
     }
 
