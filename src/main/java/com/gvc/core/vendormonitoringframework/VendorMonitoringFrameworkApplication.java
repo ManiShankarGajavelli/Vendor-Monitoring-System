@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
 @EnableScheduling
-@EnableWebMvc
 @OpenAPIDefinition(info = @Info(title = "Vendor Locomotive API", version = "2.0", description = "Vendor Locomotive API Information"))
 public class VendorMonitoringFrameworkApplication {
 

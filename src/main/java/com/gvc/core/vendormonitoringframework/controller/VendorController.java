@@ -23,6 +23,7 @@ public class VendorController {
 	
     @GetMapping(path = "/list",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<VendorBO> getVendors() {
+    	System.out.println(vendorRepositoryService.findAll());
         return  vendorRepositoryService.findAll();
     }
     

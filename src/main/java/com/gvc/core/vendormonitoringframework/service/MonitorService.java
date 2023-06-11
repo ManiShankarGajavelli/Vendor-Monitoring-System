@@ -27,28 +27,28 @@ public class MonitorService {
     @Value("${monitoring.interval}")
     private long monitoringInterval;
 
-    @Scheduled(fixedRateString = "${monitoring.interval}")
-    public void checkEndpointStatus() {
-    	List<Vendor> vendorList = vendorRepository.findAll();
-    	for (Vendor vendor : vendorList) {
-    		if(vendor!=null && vendor.getUrl()!=null) {
-                if (!UrlChecker.isUrlUp(vendor.getUrl())) {
-                	if(vendor.isStatus()) {
-                		vendor.setStatus(false);
-                		vendorRepository.save(vendor);
-                	}
-                    sendAlertEmail(vendor);
-                } else {
-                	if(!vendor.isStatus()) {
-                		vendor.setStatus(true);
-                		vendorRepository.save(vendor);
-                	}
-                }
-    		}
-    	}
-      System.out.println("vender details"+vendorList);
-    
-    }
+//    @Scheduled(fixedRateString = "${monitoring.interval}")
+//    public void checkEndpointStatus() {
+//    	List<Vendor> vendorList = vendorRepository.findAll();
+//    	for (Vendor vendor : vendorList) {
+//    		if(vendor!=null && vendor.getUrl()!=null) {
+//                if (!UrlChecker.isUrlUp(vendor.getUrl())) {
+//                	if(vendor.isStatus()) {
+//                		vendor.setStatus(false);
+//                		vendorRepository.save(vendor);
+//                	}
+//                    sendAlertEmail(vendor);
+//                } else {
+//                	if(!vendor.isStatus()) {
+//                		vendor.setStatus(true);
+//                		vendorRepository.save(vendor);
+//                	}
+//                }
+//    		}
+//    	}
+//      System.out.println("vender details"+vendorList);
+//    
+//    }
 
     private void sendAlertEmail(Vendor details) {
         MimeMessage message = mailSender.createMimeMessage();
