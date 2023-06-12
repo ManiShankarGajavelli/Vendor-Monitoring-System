@@ -64,7 +64,7 @@
   </div>
 
   <!-- Create Ticket Modal -->
-  <div class="modal fade" id="createTicketModal" tabindex="-1" role="dialog" aria-labelledby="createTicketModalLabel"
+  <div class="modal fade" id="createTicketModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="createTicketModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
