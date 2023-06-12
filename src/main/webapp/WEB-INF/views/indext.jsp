@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vendor Monitoring Service</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
@@ -713,24 +715,16 @@ body {
 					<form id="ticketForm">
 					<div class="form-group">
 							<label for="productName">Vendor Name:</label> <input type="text"
-								class="form-control" id="productName" required>
+								class="form-control" id="recipient" name="recipient" required>
 						</div>
 						<div class="form-group">
 							<label for="ticketName">Ticket Subject:</label> <input type="text"
-								class="form-control" id="ticketName" required>
+								class="form-control" id="subject" name="subject" required>
 						</div>
 						
 						<div class="form-group">
 							<label for="description">Description :</label>
-							<textarea class="form-control" id="description" rows="3" required></textarea>
-						</div>
-						<div class="form-group">
-							<label for="ticketType">Type:</label> <select
-								class="form-control" id="ticketType" required>
-								<option value="">Select Type</option>
-								<option value="issue">Issue</option>
-								<option value="suggestion">Suggestion</option>
-							</select>
+							<textarea class="form-control" id="body" name="body"rows="3" required></textarea>
 						</div>
 						<div class="form-group">
 							<label for="priority">Priority:</label> <select
@@ -742,6 +736,7 @@ body {
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary">Create</button>
+						<button type="reset" class="btn btn-danger">Cancel</button>
 					</form>
 				</div>
 			</div>
@@ -750,9 +745,12 @@ body {
 
 
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- 	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 	<script>
      $(document).ready(function() {
          // Hide all content divs except the first one
@@ -982,6 +980,32 @@ body {
             // Initial rendering of the ticket list
             renderTicketList();
           });
+        
+        $(document).ready(function(){
+            $('#ticketForm').submit(function(e){
+                e.preventDefault();                
+                var form = $(this);                
+                var actionUrl = 'http://localhost:8080/vendor-locomotive/tickets/create';               
+                var formdata =  $(form).serializeArray()
+                var data = {};
+                $(formdata ).each(function(index, obj){
+                    data[obj.name] = obj.value;
+                });
+                data = JSON.stringify(data);
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: actionUrl,
+                    data: data,
+                    dataType: "json",
+                    success:function(data){
+                    	$("#createTicketModal").modal('hide');
+                    }
+                });
+               /*  retrun false; */
+            });
+        });
 
 
   </script>
