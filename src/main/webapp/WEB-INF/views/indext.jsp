@@ -305,13 +305,15 @@
 						let image = vendor ? vendor.logo ? vendor.logo : "fab fa-jira" : "fab fa-jira";
 						let progress = (totalPendingIssue / totalIssue) * 100;
 
+						console.log("image..." + image);
+
 						var dynamicData =
-							'<!-- <a class="card-block stretched-link text-decoration-none view-more" data-toggle="modal" data-target="#vendorModal" href="#"> -->                                           '+
+							'<!-- <a class="card-block stretched-link text-decoration-none view-more" data-toggle="modal" data-target="#vendorModal" href="#"> -->                                               '+
 							'<div class="card card-grow p-3 mb-2" style = "width: 333px;float:left;margin-right:30px;">' +
 							'<div class="d-flex justify-content-between">' +
 							'<div class="d-flex flex-row align-items-center">' +
 							'<div class="icon">' +
-							'<i class=' + image + '></i>' +
+							'<i class="' + image + '"></i>' +
 							'</div>' +
 							'<div class="ms-2 c-details">' +
 							'<h6 class="mb-0">' +
