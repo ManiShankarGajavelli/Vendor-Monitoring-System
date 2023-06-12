@@ -12,21 +12,16 @@ public class VendorBO {
     private int monitoringInterval;
     private String url;
     private boolean status;
+    private String urlLastValidated;
+    private String category;
+    private String totalPendingIssue;
+    private String totalIssue;
+    private String logo;
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("VendorBO [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", monitoringInterval=");
-		builder.append(monitoringInterval);
-		builder.append(", url=");
-		builder.append(url);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append("]");
-		return builder.toString();
+		return "VendorBO [id=" + id + ", name=" + name + ", monitoringInterval=" + monitoringInterval + ", url=" + url
+				+ ", status=" + status + ", urlLastValidated=" + urlLastValidated + ", category=" + category
+				+ ", totalPendingIssue=" + totalPendingIssue + ", totalIssue=" + totalIssue + ", logo=" + logo + "]";
 	}
 	public Long getId() {
 		return id;
@@ -58,9 +53,35 @@ public class VendorBO {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	public String getUrlLastValidated() {
+		return urlLastValidated;
+	}
+	public void setUrlLastValidated(String urlLastValidated) {
+		this.urlLastValidated = urlLastValidated;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getTotalPendingIssue() {
+		return totalPendingIssue;
+	}
+	public void setTotalPendingIssue(String totalPendingIssue) {
+		this.totalPendingIssue = totalPendingIssue;
+	}
+	public String getTotalIssue() {
+		return totalIssue;
+	}
+	public void setTotalIssue(String totalIssue) {
+		this.totalIssue = totalIssue;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 	
-	
-    
-    
-
 }
