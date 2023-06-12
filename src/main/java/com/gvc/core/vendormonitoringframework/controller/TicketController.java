@@ -32,7 +32,7 @@ public class TicketController {
 	public String sendEmail(@RequestBody EmailSendRequest email) {
 		log.info("TicketController :: sendEmail :: started");
 		try {
-			emailService.sendEmail(email.getRecipient(), email.getSubject(), email.getBody());
+			emailService.sendEmail(email.getRecipient(), email.getSubject(), email.getBody(),email.getPriority());
 		} catch (Exception e) {
 			log.error("Exception in TicketController : sendEmail : " 
 					+ e.getMessage());

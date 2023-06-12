@@ -8,7 +8,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class CamelRoutBuilder extends RouteBuilder {
 	@Value("${spring.mail.username}")
 	private String username;
