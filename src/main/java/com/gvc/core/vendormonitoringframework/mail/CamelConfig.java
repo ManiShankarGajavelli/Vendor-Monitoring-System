@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class CamelConfig {
 	
 	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CamelConfig.class);
+	
+	@Bean
+	public CamelRoutBuilder getRoutes() {
+		return new CamelRoutBuilder();
+	}
 
     @Bean
     public CamelContext getCamelContext(CamelRoutBuilder camelRoutBuilder) {

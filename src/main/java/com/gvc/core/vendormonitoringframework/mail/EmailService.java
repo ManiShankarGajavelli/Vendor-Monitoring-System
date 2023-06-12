@@ -30,13 +30,14 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String from;
 
-    public void sendEmail(String recipient, String subject, String body) {
+    public void sendEmail(String recipient, String subject, String body,String priority) {
     	log.info("EmailService : sendEMail : to ::" + recipient + " : started");
     	try {
     		Ticket ticket = new Ticket();
     		ticket.setBody(body);
     		ticket.setSubject(subject);
     		ticket.setRecipient(recipient);
+    		ticket.setPriorityOfIssue(priority);
     		Ticket savedTicket = ticketsRepository.save(ticket);
     		
     		
