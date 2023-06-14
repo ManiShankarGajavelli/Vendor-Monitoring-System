@@ -9,20 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class VendorsListController {
 
-	  @GetMapping("/")
-	    public String myPage(Model model) {
-	        return "index";
-	    }
-	  @GetMapping("/tt")
-	    public String myPage1(Model model) {
-	        return "index1";
-	    }
-	  @GetMapping("/t")
-	    public String myPage2(Model model) {
-	        return "indext";
-	    }
-	  @GetMapping("/view")
-	    public String myPage3(Model model) {
-	        return "view";
-	    }
+	@GetMapping("/")
+	public String myPage(Model model) {
+		return "indext";
+	}
+
+	@GetMapping("/tt")
+	public String myPage1(Model model) {
+		return "index1";
+	}
+
+	@GetMapping("/t")
+	public String myPage2(Model model) {
+		return "index123";
+	}
+
+	@GetMapping("/view")
+	public String myPage3(Model model) {
+		return "view";
+	}
 }

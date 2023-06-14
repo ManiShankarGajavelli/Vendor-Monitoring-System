@@ -6,8 +6,6 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 
 public class CamelRoutBuilder extends RouteBuilder {
 	@Value("${spring.mail.username}")
@@ -31,6 +29,14 @@ public class CamelRoutBuilder extends RouteBuilder {
 	private String OUT_URI;
 	private String IN_URI;
 
+    public CamelRoutBuilder() {
+    }
+    
+    public CamelRoutBuilder(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    
 	public String getUsername() {
 		return username;
 	}
@@ -83,8 +89,8 @@ public class CamelRoutBuilder extends RouteBuilder {
 		return OUT_URI;
 	}
 
-	public void setOUT_URI(String oUT_URI) {
-		OUT_URI = oUT_URI;
+	public void setOUT_URI(String OUT_URI) {
+		this.OUT_URI = OUT_URI;
 	}
 
 	public String getIN_URI() {
@@ -101,6 +107,7 @@ public class CamelRoutBuilder extends RouteBuilder {
 		builder.append("smtp://").append(host).append(":").append(port).append("?username=").append(username)
 				.append("&password=").append(password).append("&mail.smtp.auth=").append(auth)
 				.append("&mail.smtp.starttls.enable=").append(starttls).append("&mail.smtp.ssl.enable=false");
+//		System.err.println(builder);
 		this.OUT_URI = builder.toString();
 
 		StringBuilder in_builder = new StringBuilder();
@@ -111,11 +118,13 @@ public class CamelRoutBuilder extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
+		System.err.println(OUT_URI);
 		// Route for sending email
 		from("direct:sendEmail").to(this.OUT_URI);
 
 		// Route for receiving email
-		from(this.IN_URI).process(new Processor() {
+		from(this.IN_URI).
+		process(new Processor() {
 			@Override
 			public void process(Exchange exchange) throws Exception {
 				System.err.println(exchange);
@@ -125,6 +134,6 @@ public class CamelRoutBuilder extends RouteBuilder {
 				System.out.println("Subject: " + subject);
 				System.out.println("Body: " + body);
 			}
-		});
+		}).end();
 	}
 }

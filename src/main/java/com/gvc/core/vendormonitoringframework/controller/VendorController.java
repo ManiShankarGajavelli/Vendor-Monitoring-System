@@ -11,17 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gvc.core.vendormonitoringframework.beans.VendorBO;
 import com.gvc.core.vendormonitoringframework.service.VendorRepositoryService;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @RestController
 @RequestMapping("/api/vendors")
 public class VendorController {
 
-	@Autowired@Setter@Getter
+	@Autowired
 	private VendorRepositoryService vendorRepositoryService;
 	
-    @GetMapping(path = "/list",produces = MediaType.APPLICATION_JSON_VALUE)
+    public VendorRepositoryService getVendorRepositoryService() {
+		return vendorRepositoryService;
+	}
+
+	public void setVendorRepositoryService(VendorRepositoryService vendorRepositoryService) {
+		this.vendorRepositoryService = vendorRepositoryService;
+	}
+
+	@GetMapping(path = "/list",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<VendorBO> getVendors() {
     	System.out.println(vendorRepositoryService.findAll());
         return  vendorRepositoryService.findAll();

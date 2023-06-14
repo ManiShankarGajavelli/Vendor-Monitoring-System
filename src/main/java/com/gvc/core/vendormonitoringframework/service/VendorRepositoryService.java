@@ -11,12 +11,7 @@ import com.gvc.core.vendormonitoringframework.beans.VendorBO;
 import com.gvc.core.vendormonitoringframework.entities.Vendor;
 import com.gvc.core.vendormonitoringframework.repository.VendorRepository;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Service
-@Setter
-@Getter
 public class VendorRepositoryService {    
 
     @Autowired

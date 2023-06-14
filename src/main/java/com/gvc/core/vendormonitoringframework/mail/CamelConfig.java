@@ -1,30 +1,21 @@
 package com.gvc.core.vendormonitoringframework.mail;
 
-import org.apache.camel.CamelContext;
-import org.apache.camel.impl.DefaultCamelContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CamelConfig {
 	
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CamelConfig.class);
-	
-	@Bean
-	public CamelRoutBuilder getRoutes() {
-		return new CamelRoutBuilder();
-	}
+	@Value("${spring.mail.username}")
+    private String username;
+
+	@Value("${spring.mail.password}")
+    private String password;
 
     @Bean
-    public CamelContext getCamelContext(CamelRoutBuilder camelRoutBuilder) {
-    	CamelContext ctx = new DefaultCamelContext();
-    	try {
-			ctx.addRoutes(camelRoutBuilder);
-			ctx.start();
-		} catch (Exception e) {
-			log.error("CamelConfig : getCamelContext : exception : "+e.getMessage());
-		}
-    	return ctx;
+    public CamelRoutBuilder camelRouteBuilder() {
+        return new CamelRoutBuilder(username, password);
     }
 
 }

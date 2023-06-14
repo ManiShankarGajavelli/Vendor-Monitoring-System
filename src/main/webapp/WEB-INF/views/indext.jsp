@@ -686,33 +686,27 @@
 					<form id="ticketForm">
 						<div class="form-group">
 							<label for="productName">Vendor Name:</label> <input type="text" class="form-control"
-								id="productName" required>
+								id="productName" name="recipient" required>
 						</div>
 						<div class="form-group">
 							<label for="ticketName">Ticket Subject:</label> <input type="text" class="form-control"
-								id="ticketName" required>
+								id="subject" name="subject"" required>
 						</div>
 
 						<div class="form-group">
 							<label for="description">Description :</label>
-							<textarea class="form-control" id="description" rows="3" required></textarea>
+							<textarea class="form-control" id="description" rows="3" name="body" required></textarea>
 						</div>
 						<div class="form-group">
-							<label for="ticketType">Type:</label> <select class="form-control" id="ticketType" required>
-								<option value="">Select Type</option>
-								<option value="issue">Issue</option>
-								<option value="suggestion">Suggestion</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="priority">Priority:</label> <select class="form-control" id="priority" required>
+							<label for="priority">Priority:</label> <select class="form-control" id="priority" name="priority" required>
 								<option value="">Select Priority</option>
-								<option value="low">Low</option>
+								<option value="low">Low</option> 
 								<option value="medium">Medium</option>
 								<option value="high">High</option>
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary">Create</button>
+						<button type="reset" class="btn btn-danger">Cancel</button>
 					</form>
 				</div>
 			</div>
@@ -952,6 +946,31 @@
 			// Initial rendering of the ticket list
 			renderTicketList();
 		});
+        $(document).ready(function(){
+            $('#ticketForm').submit(function(e){
+                e.preventDefault();                
+                var form = $(this);                
+                var actionUrl = 'http://localhost:8080/vendor-locomotive/tickets/create';               
+                var formdata =  $(form).serializeArray()
+                var data = {};
+                $(formdata ).each(function(index, obj){
+                    data[obj.name] = obj.value;
+                });
+                data = JSON.stringify(data);
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: actionUrl,
+                    data: data,
+                    dataType: "json",
+                    success:function(data){
+                    	$("#createTicketModal").modal('hide');
+                    }
+                });
+               /*  retrun false; */
+            });
+        });
 
 
 	</script>

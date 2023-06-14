@@ -2,8 +2,6 @@ package com.gvc.core.vendormonitoringframework.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VendorBO {
 	
