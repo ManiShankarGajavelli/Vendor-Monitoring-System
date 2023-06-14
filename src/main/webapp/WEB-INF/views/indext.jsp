@@ -317,11 +317,11 @@
 							'</div>' +
 							'<div class="ms-2 c-details">' +
 							'<h6 class="mb-0">' +
-							vendor.name + '<a href="#" class="copy-url" data-vendor=' + vendor.url + '>' +
+							vendor.name + '<a href="#" style="padding-left: 5px;"class="copy-url" data-vendor=' + vendor.url + '>' +
 							'<i class="far fa-copy"></i>' +
 							'</a>' +
 							'</h6>' +
-							'<span> <i class="fas fa-circle" style="color:' + color + '"></i>' + urlLastValidated + ' days ago' +
+							'<span> <i class="fas fa-circle" style="padding-right:5px;color:' + color + '"></i>' + urlLastValidated + ' days ago' +
 							'</span>' +
 							'</div>' +
 							'</div>' +
@@ -336,7 +336,7 @@
 							'<div class="progress-bar" role="progressbar" style="width: ' + progress + '%"' +
 							'aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>' +
 							'</div>' +
-							'<a class="card-block stretched-link text-decoration-none view-more"' +
+							'<a class="card-block text-decoration-none view-more"' +
 							'data-toggle="modal" data-target="#vendorModal" href="#">' +
 							'<div class="mt-3">' +
 							'<span class="text1">' + totalPendingIssue + ' Pending <span class="text2">of' +
@@ -356,6 +356,25 @@
 				.catch(error => {
 					console.error('Error fetching vendors:', error);
 				});
+            document.addEventListener('click', () => {
+                // Set a timeout of 2 seconds (2000 milliseconds)
+                const parentElement = event.target.parentNode;
+                  event.preventDefault();
+                  if (parentElement.classList.contains('copy-url')) {
+        // Set a timeout of 2 seconds (2000 milliseconds)
+        const vendorName = parentElement.getAttribute('data-vendor');
+                  //var vendorName = $(this).data('vendor');
+                  copyToClipboard(vendorName);
+      }
+              });
+              function copyToClipboard(text) {
+                  var dummy = document.createElement('textarea');
+                  document.body.appendChild(dummy);
+                  dummy.value = text;
+                  dummy.select();
+                  document.execCommand('copy');
+                  document.body.removeChild(dummy);
+              }
 		});
 
 
